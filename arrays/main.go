@@ -1,9 +1,15 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println("Hello")
+	var cheeses = make([]string, 2)
+
+	cheeses[0] = "Cheddar"
+	cheeses[1] = "Västerbotten"
+
+	for i, s := range cheeses {
+		fmt.Println(i, s)
+	}
+
 }
