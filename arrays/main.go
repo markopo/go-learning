@@ -8,6 +8,8 @@ func main() {
 	cheeses[0] = "Cheddar"
 	cheeses[1] = "Västerbotten"
 
+	cheeses = append(cheeses, "Camembert")
+
 	for i, s := range cheeses {
 		fmt.Println(i, s)
 	}
