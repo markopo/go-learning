@@ -30,6 +30,27 @@ func main() {
 		fmt.Println(i, s)
 	}
 
+	fmt.Println("MAPS ****")
 
+	// players score
+	var players = make(map[string]int)
+
+	players["marko"] = 23
+	players["alex"] = 12
+	players["alice"] = 34
+	players["linda"] = 11
+
+	// fmt.Println(players)
+
+	for i, s := range players {
+		fmt.Println("key: ", i)
+		fmt.Println("value: ", s)
+	}
+
+	delete(players, "marko")
+
+	fmt.Println(len(players))
+
+	
 
 }
