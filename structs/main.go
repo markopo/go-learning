@@ -2,6 +2,7 @@ package main
 
 import(
 	"fmt"
+	"reflect"
 )
 
 type Movie struct {
@@ -29,6 +30,8 @@ func main() {
 
 	fmt.Println("%+v\n", movie)
 
+	fmt.Println(reflect.TypeOf(movie))
+
 	fmt.Println(movie.Name, movie.Rating)
 
 	batman := Superhero{
@@ -40,6 +43,21 @@ func main() {
 			City: "Gotham City",
 		},
 	}
+
+	not_real_batman := batman
+
+	not_real_batman.Name = "False Batman"
+
+	fmt.Println(not_real_batman.Name, batman.Name)
+	
+	// pointer
+	copy_batman := &batman
+
+	copy_batman.Name = "Batman (Bruce Wayne)"
+
+	fmt.Println(copy_batman.Name, batman.Name)
+
+	fmt.Println(reflect.TypeOf(batman))
 
 	fmt.Println("%+v\n", batman)
 }
