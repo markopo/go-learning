@@ -49,7 +49,7 @@ func main() {
 	not_real_batman.Name = "False Batman"
 
 	fmt.Println(not_real_batman.Name, batman.Name)
-	
+
 	// pointer
 	copy_batman := &batman
 
