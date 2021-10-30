@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
 	"strconv"
@@ -43,7 +44,33 @@ func(t *Triangle) changeBase(f float64) {
 	return
 }
 
+type Robot interface {
+	PowerOn() error
+}
 
+func Boot(r Robot) error {
+	return r.PowerOn()
+}
+
+type T850 struct {
+	Name string
+}
+
+func (a *T850) PowerOn() error  {
+	return nil
+}
+
+type R2D2 struct {
+	Broken bool
+}
+
+func(r *R2D2) PowerOn() error {
+	if r.Broken {
+		return errors.New("R2D2 is broken")
+	} else {
+		return nil
+	}
+}
 
 
 
@@ -76,4 +103,30 @@ func main() {
 	fmt.Println(t.area())
 
 	fmt.Println("***** INTERFACES!!! *****")
+
+	terminator := T850{
+		Name: "Terminator",
+	}
+
+	r2d2 := R2D2{
+		Broken: true,
+	}
+
+	err := Boot(&terminator)
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Robot is powered on!")
+	}
+
+	err = Boot(&r2d2)
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Robot is powered on!")
+	}
+
+
 }
