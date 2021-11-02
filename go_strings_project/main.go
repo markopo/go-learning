@@ -39,7 +39,22 @@ func main() {
    }
 
    if txt != nil {
-	   fmt.Println(string(txt))
+	   text := string(txt) + "\n add more text..."
+	   fmt.Println(text)
+
+	  err := ioutil.WriteFile("hello.txt", []byte(text), 0644)
+
+	  if err != nil {
+		 txtAgain, err :=  ioutil.ReadFile("hello.txt")
+
+		 if err == nil {
+			 fmt.Println(txtAgain)
+
+		 }
+
+	  }
+
+
    }
 
 }
