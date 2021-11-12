@@ -47,7 +47,7 @@ func main() {
 	  if err != nil {
 		 txtAgain, err :=  ioutil.ReadFile("hello.txt")
 
-		 if err == nil {
+		 if txtAgain != nil && err == nil {
 			 fmt.Println(txtAgain)
 
 		 }
