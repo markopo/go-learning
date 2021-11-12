@@ -11,7 +11,9 @@ func slowFunc() {
 }
 
 func main() {
-	slowFunc()
+	go slowFunc()
 
 	fmt.Println("All finished! BINGO!")
+
+	time.Sleep(time.Second * 3)
 }
