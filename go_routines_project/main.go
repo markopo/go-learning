@@ -7,11 +7,12 @@ import (
 	"time"
 )
 
-var c = make(chan string)
 
-func slowFunc() {
-	time.Sleep(time.Second * 2)
-	c <- "slow func finished.."
+
+func slowFunc(c chan string) {
+	for msg := range c {
+		fmt.Println(msg)
+	}
 }
 
 func responseTime(url string)  {
@@ -31,12 +32,17 @@ func responseTime(url string)  {
 }
 
 func main() {
-	go slowFunc()
+	messages := make(chan string, 2)
+	messages <- "hello"
+	messages <- "world"
 
-	msg := <-c
-	fmt.Println("MESSAGE RECEIVED: ", msg)
+	close(messages)
 
+	fmt.Println("Push 2 messages onto Channel with no receivers.")
 
+	time.Sleep(time.Second * 1)
+
+	slowFunc(messages)
 
 	//urls := make([]string, 5)
 	//urls[0] = "https://sr.se"
