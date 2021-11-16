@@ -9,7 +9,7 @@ import (
 
 
 
-func slowFunc(c chan string) {
+func receiver(c chan string) {
 	for msg := range c {
 		fmt.Println(msg)
 	}
@@ -42,7 +42,7 @@ func main() {
 
 	time.Sleep(time.Second * 1)
 
-	slowFunc(messages)
+	receiver(messages)
 
 	//urls := make([]string, 5)
 	//urls[0] = "https://sr.se"
