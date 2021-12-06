@@ -3,19 +3,38 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strings"
 )
+
+const portNumber = ":6969"
+
+// Home Page
+func Home(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Home Page")
+}
+
+// About Page
+func About(w http.ResponseWriter, r *http.Request) {
+	sum := addValues(2, 2)
+	fmt.Fprintf(w, fmt.Sprintf("About Page, 2 + 2 = %d", sum))
+}
+
+// Addition
+func addValues(x, y int) int {
+	return x + y
+}
+
 
 func main() {
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-	  n, err :=	fmt.Fprintf(w, "Hello World!")
+	http.HandleFunc("/", Home)
+	http.HandleFunc("/about", About)
 
-	  if err != nil {
-		  fmt.Println(err)
-	  }
+	fmt.Println(fmt.Sprintf("Starting the app at port%s", portNumber))
 
-	  fmt.Println(fmt.Sprintf("Number of bytes written: %d", n))
-	})
+	if strings.Contains(portNumber, "69")  {
+		fmt.Println("It's the dirty port!")
+	}
 
-	_ = http.ListenAndServe(":6969", nil)
+	_ = http.ListenAndServe(portNumber, nil)
 }
