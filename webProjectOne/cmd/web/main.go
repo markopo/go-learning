@@ -2,9 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/markopo/go-learning/pkg/config"
+	"github.com/markopo/go-learning/pkg/handlers"
+	"github.com/markopo/go-learning/pkg/render"
+	"log"
 	"net/http"
 	"strings"
-	"github.com/markopo/go-learning/pkg/handlers"
 )
 
 const portNumber = ":6969"
@@ -15,8 +18,24 @@ const portNumber = ":6969"
 
 func main() {
 
-	http.HandleFunc("/", handlers.Home)
-	http.HandleFunc("/about", handlers.About)
+	var app config.AppConfig
+
+	tc, err := render.CreateTemplateCache()
+
+	if err != nil {
+		log.Fatalln("Cannot create template cache")
+	}
+
+	app.TemplateCache = tc
+	app.UseCache = true
+
+	repo := handlers.NewRepo(&app)
+
+	render.NewTemplates(&app)
+	handlers.NewHandlers(repo)
+
+	http.HandleFunc("/", handlers.Repo.Home)
+	http.HandleFunc("/about", handlers.Repo.About)
 
 	fmt.Println(fmt.Sprintf("Starting the app at port%s", portNumber))
 
