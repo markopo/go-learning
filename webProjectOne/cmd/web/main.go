@@ -12,10 +12,6 @@ import (
 
 const portNumber = ":6969"
 
-
-
-
-
 func main() {
 
 	var app config.AppConfig
@@ -34,14 +30,17 @@ func main() {
 	render.NewTemplates(&app)
 	handlers.NewHandlers(repo)
 
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
-
 	fmt.Println(fmt.Sprintf("Starting the app at port%s", portNumber))
 
 	if strings.Contains(portNumber, "69")  {
 		fmt.Println("It's the dirty port!")
 	}
 
-	_ = http.ListenAndServe(portNumber, nil)
+	srv := &http.Server{
+		Addr: portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
 }
