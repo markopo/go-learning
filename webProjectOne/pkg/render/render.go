@@ -2,7 +2,6 @@ package render
 
 import (
 	"bytes"
-	"fmt"
 	"github.com/markopo/go-learning/pkg/config"
 	"github.com/markopo/go-learning/pkg/models"
 	"html/template"
@@ -63,7 +62,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 	for _, page := range pages {
 		name := filepath.Base(page)
-		fmt.Println("Page: ", page)
+		// fmt.Println("Page: ", page)
 
 		ts, err := template.New(name).Funcs(functions).ParseFiles(page)
 		if err != nil {

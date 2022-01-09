@@ -11,6 +11,7 @@ import (
 )
 
 const portNumber = ":6969"
+const useCache = true
 
 func main() {
 
@@ -23,7 +24,7 @@ func main() {
 	}
 
 	app.TemplateCache = tc
-	app.UseCache = false
+	app.UseCache = useCache
 
 	repo := handlers.NewRepo(&app)
 
