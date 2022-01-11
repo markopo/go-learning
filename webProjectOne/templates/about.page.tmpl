@@ -8,6 +8,12 @@
         <div class="px-4 py-5 my-5 text-center">
             <h1 class="display-4 fw-bold">{{index .StringMap "title"}}</h1>
             <p>{{index .StringMap "text"}}</p>
+            <p>{{ if ne (index .StringMap "remote_ip") "" }}
+                    <span>Your remote ip is {{index .StringMap "remote_ip"}}</span>
+               {{ else }}
+                    <span>I don't know your ip address yet... :(</span>
+               {{ end }}
+            </p>
         </div>
     </main>
 </div>
