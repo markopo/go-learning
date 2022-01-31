@@ -1,0 +1,14 @@
+{{template "base" . }}
+{{define "content"}}
+<header class="p-3 bg-dark text-white">
+    <h1>Home Page</h1>
+</header>
+<div class="container">
+    <main>
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-4 fw-bold">{{index .StringMap "title"}}</h1>
+            <p>{{index .StringMap "text"}}</p>
+        </div>
+    </main>
+</div>
+{{end}}
