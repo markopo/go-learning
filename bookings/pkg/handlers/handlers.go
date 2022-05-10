@@ -51,3 +51,23 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 		StringMap: stringMap,
 	})
 }
+
+func (m *Repository) Generals(w http.ResponseWriter, r *http.Request) {
+
+	stringMap := make(map[string]string)
+	stringMap["title"] = "Generals"
+
+	render.RenderTemplate(w, "generals.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+	})
+}
+
+func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
+
+	stringMap := make(map[string]string)
+	stringMap["title"] = "Majors"
+
+	render.RenderTemplate(w, "majors.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+	})
+}
