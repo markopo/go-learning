@@ -1,0 +1,25 @@
+{{template "base" . }}
+{{define "content"}}
+<div class="container">
+  <main>
+       <div class="row">
+           <div class="col-md-6">
+               <h1 class="display-4 fw-bold">Reservation</h1>
+               <h4>Search for availability:</h4>
+               <div style="margin: 1rem;padding: 1rem;">
+                   <form>
+                       <div class="form-group">
+                           <label>Text</label>
+                           <input type="text" class="form-control" >
+                       </div>
+                       <hr />
+                       <div>
+                           <button type="submit" class="form-control">Search</button>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+  </main>
+</div>
+{{end}}
