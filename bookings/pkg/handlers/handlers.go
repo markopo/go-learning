@@ -71,3 +71,13 @@ func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
 		StringMap: stringMap,
 	})
 }
+
+func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
+
+	stringMap := make(map[string]string)
+	stringMap["title"] = "Contact"
+
+	render.RenderTemplate(w, "contact.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+	})
+}
