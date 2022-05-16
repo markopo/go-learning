@@ -6,15 +6,21 @@
            <div class="col-md-6">
                <h1 class="display-4 fw-bold">Reservation</h1>
                <h4>Search for availability:</h4>
-               <div style="margin: 1rem;padding: 1rem;">
-                   <form>
+               <div style="margin: 1rem 0;padding: 1rem 0;">
+                   <form action="/reservation" method="get" >
                        <div class="form-group">
-                           <label>Text</label>
-                           <input type="text" class="form-control" >
+                           <label for="start_date">Starting date:</label>
+                           <input type="date" class="form-control" name="start_date" id="start_date" >
+                           <small class="form-text text-muted">Starting date YYYY-MM-DD.</small>
+                       </div>
+                       <div class="form-group">
+                           <label for="end_date">Ending date:</label>
+                           <input type="date" class="form-control" name="end_date" id="end_date" >
+                           <small class="form-text text-muted">Ending date YYYY-MM-DD.</small>
                        </div>
                        <hr />
                        <div>
-                           <button type="submit" class="form-control">Search</button>
+                           <button type="submit" class="btn btn-primary">Search</button>
                        </div>
                    </form>
                </div>
