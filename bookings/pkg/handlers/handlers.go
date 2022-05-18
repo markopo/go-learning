@@ -91,3 +91,13 @@ func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
 		StringMap: stringMap,
 	})
 }
+
+func (m *Repository) MakeReservation(w http.ResponseWriter, r *http.Request) {
+
+	stringMap := make(map[string]string)
+	stringMap["title"] = "Make Reservation"
+
+	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+	})
+}
