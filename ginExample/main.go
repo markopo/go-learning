@@ -18,7 +18,7 @@ func main() {
 		var person Person
 		name := ""
 
-		if context.ShouldBind(&person) == nil {
+		if context.ShouldBind(&person) == nil && person.Name != "" {
 			name = "God day " + person.Name
 		}
 
