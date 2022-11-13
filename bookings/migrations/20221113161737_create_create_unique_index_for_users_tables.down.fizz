@@ -1,0 +1,1 @@
+drop_index("users", "create_create_unique_index_for_users_tables")
