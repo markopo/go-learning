@@ -28,11 +28,62 @@ func main() {
 	log.Println("PING DB BINGO!!")
 
 	err = getUsers(conn)
-
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	err = insertUser(conn, "Musse", "Pigg")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = insertUser(conn, "Kalle", "Anka")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = insertUser(conn, "Arne", "Anka")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = insertUser(conn, "Mimmi", "Anka")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = getUsers(conn)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+}
+
+func insertUser(conn *sql.DB, fName string, lName string) error {
+
+	row := conn.QueryRow("select count(id) as antal from users where first_name = $1 and last_name = $2", fName, lName)
+
+	var antal int
+	row.Scan(&antal)
+
+	if antal > 0 {
+		fmt.Printf("User %s %s already exists!!\n", fName, lName)
+		return nil
+	}
+
+	fmt.Println("antal: ", antal)
+
+	sql := "insert into users (first_name, last_name) values($1, $2)"
+	_, err := conn.Exec(sql, fName, lName)
+
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	log.Println("Inserted a row!")
+
+	return nil
 }
 
 func getUsers(conn *sql.DB) error {
