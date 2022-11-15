@@ -27,4 +27,40 @@ func main() {
 
 	log.Println("PING DB BINGO!!")
 
+	err = getUsers(conn)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+}
+
+func getUsers(conn *sql.DB) error {
+	sql := "select id, first_name, last_name from users"
+	rows, err := conn.Query(sql)
+
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	var first_name, last_name string
+	var id int
+
+	for rows.Next() {
+		err := rows.Scan(&id, &first_name, &last_name)
+
+		if err != nil {
+			log.Println(err)
+			return err
+		}
+
+		fmt.Println("User: ", id, first_name, last_name)
+	}
+
+	if err = rows.Err(); err != nil {
+		log.Fatal("Error scanning rows ", err)
+	}
+
+	return nil
 }
