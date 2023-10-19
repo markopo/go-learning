@@ -31,6 +31,13 @@ func main() {
 
 	app.Session = session
 
+	log.Println("Connecting to database...")
+	//	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=markopoikkimaki password=")
+
+	//if err != nil {
+	//	log.Fatalln("Cannot connect to database! Dying...")
+	//}
+
 	tc, err := render.CreateTemplateCache()
 
 	if err != nil {
